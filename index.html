@@ -3,153 +3,428 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#18251e">
-<title>The Green Table | Digital Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#191713">
+<title>Royal Spice Kitchen | Digital Menu</title>
+
 <style>
-:root{--green:#20392b;--cream:#faf7f0;--gold:#c89d53}
-*{box-sizing:border-box}
-body{margin:0;background:var(--cream);color:#252720;
-font-family:Arial,sans-serif}
-header{background:var(--green);color:white;padding:27px 18px 25px;
-text-align:center}
-.logo{font-size:12px;letter-spacing:4px;color:#e6c88f}
-header h1{font-family:Georgia,serif;font-size:34px;margin:13px 0 7px}
-header p{font-size:13px;color:#e0e5dc;margin:0}
-main{max-width:720px;margin:auto;padding:20px 15px 40px}
-.notice{font-size:12px;text-align:center;color:#8c5c22;
-background:#fff0d9;padding:10px;border-radius:8px}
-h2{font-family:Georgia,serif;font-size:25px;margin:23px 0 14px}
-.search{width:100%;padding:13px;border:1px solid #dedbd2;
-border-radius:10px;background:white;font-size:15px}
-.categories{display:flex;gap:8px;overflow-x:auto;padding:14px 0}
-.categories button{white-space:nowrap;border:1px solid #ddd7ca;
-background:white;border-radius:22px;padding:10px 15px;color:#333}
-.categories button.active{background:var(--green);color:white}
-#menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
-.item{background:white;border-radius:13px;overflow:hidden;
-border:1px solid #ece8df}
-.item img{width:100%;height:135px;object-fit:cover;background:#eee}
-.details{padding:11px}
-.details h3{font-size:15px;margin:0 0 7px}
-.details p{font-size:12px;color:#777;margin:0 0 10px}
-.price{font-weight:bold;color:var(--green);font-size:16px}
-.tag{font-size:10px;color:#467b42;margin-bottom:7px}
-.empty{grid-column:1/-1;text-align:center;padding:30px}
-.contact{margin-top:28px;padding:22px;background:#eae7dc;
-border-radius:12px;text-align:center}
-.contact a{display:inline-block;margin:5px;padding:12px 15px;
-background:var(--green);color:white;text-decoration:none;
-border-radius:8px;font-size:13px}
-footer{text-align:center;font-size:11px;color:#777;padding:18px}
-@media(min-width:560px){#menu{grid-template-columns:repeat(3,minmax(0,1fr))}
-.item img{height:160px}}
+:root {
+  --bg:#f7f2e9;
+  --card:#fffdf8;
+  --dark:#211e19;
+  --gold:#c49a58;
+  --muted:#766e63;
+  --line:#e6ddcf;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--dark);
+  font-family:Arial,sans-serif;
+}
+button,input { font:inherit; }
+header {
+  background:linear-gradient(135deg,#191713,#44372a);
+  color:white;
+  padding:30px 18px;
+}
+.wrap { max-width:850px; margin:auto; }
+.eyebrow {
+  color:#e3c18c;
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+h1 {
+  font-family:Georgia,serif;
+  font-size:clamp(32px,8vw,48px);
+  font-weight:normal;
+  margin:13px 0;
+}
+header p { color:#e8dfd3; line-height:1.5; }
+.demo {
+  display:inline-block;
+  padding:7px 11px;
+  border:1px solid #94774e;
+  border-radius:30px;
+  font-size:10px;
+  letter-spacing:1px;
+  margin-top:7px;
+}
+main { max-width:850px; margin:auto; padding:18px 13px 35px; }
+.notice {
+  background:#fff0d2;
+  padding:12px;
+  border-radius:10px;
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:18px;
+}
+input {
+  width:100%;
+  padding:13px;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:10px;
+  outline-color:var(--gold);
+}
+.categories {
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:12px 0;
+}
+.cat {
+  flex-shrink:0;
+  border:1px solid var(--line);
+  border-radius:25px;
+  padding:9px 14px;
+  background:var(--card);
+  cursor:pointer;
+}
+.cat.active { background:var(--dark); color:white; }
+.heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  margin:18px 0 13px;
+}
+h2 { font-family:Georgia,serif; font-weight:normal; margin:0; }
+.count { font-size:12px; color:var(--muted); }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.food {
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  overflow:hidden;
+}
+.food img {
+  display:block;
+  width:100%;
+  aspect-ratio:1.15;
+  object-fit:cover;
+  background:#e7ddcd;
+}
+.food-info { padding:11px; }
+.food-row {
+  display:flex;
+  justify-content:space-between;
+  gap:7px;
+}
+.food-name { font-size:14px; font-weight:bold; }
+.price { color:#8a622b; font-weight:bold; white-space:nowrap; }
+.description {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.45;
+  margin:8px 0;
+}
+.veg { color:#247747; font-size:10px; font-weight:bold; }
+.empty {
+  grid-column:1/-1;
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+}
+.contact {
+  margin-top:23px;
+  padding:20px;
+  border-radius:14px;
+  background:var(--dark);
+  color:white;
+}
+.contact p { color:#ded5c9; font-size:13px; line-height:1.6; }
+.actions { display:flex; flex-wrap:wrap; gap:9px; }
+.btn {
+  display:inline-block;
+  border:0;
+  border-radius:9px;
+  padding:12px 14px;
+  font-weight:bold;
+  text-decoration:none;
+  font-size:13px;
+  cursor:pointer;
+}
+.gold { background:var(--gold); color:#211e19; }
+.light { background:#fffdf8; color:#211e19; }
+footer {
+  padding:22px 5px;
+  text-align:center;
+  color:var(--muted);
+  font-size:11px;
+}
+@media(min-width:600px) {
+  .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  main { padding:24px 18px; }
+}
+@media(max-width:340px) {
+  .grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <div class="logo">EST. • FRESH • FLAVOUR</div>
-  <h1 id="restaurantName">The Green Table</h1>
-  <p>Good food. Beautiful moments.</p>
-  <p style="margin-top:12px">DIGITAL MENU</p>
+  <div class="wrap">
+    <div class="eyebrow">A taste worth remembering</div>
+    <h1 id="restaurantName">Royal Spice Kitchen</h1>
+    <p id="tagline">Indian favourites, made for sharing.</p>
+    <span class="demo">DEMO MENU · SAMPLE DETAILS</span>
+  </div>
 </header>
 
 <main>
-  <div class="notice">DEMO MENU — Sample dishes and prices</div>
-  <h2>Explore Our Menu</h2>
-  <input id="search" class="search" placeholder="Search dishes..." />
-  <div id="categories" class="categories"></div>
-  <div id="menu"></div>
+  <div class="notice">
+    <b>Demo website:</b> Ye sample restaurant hai.
+    Asli restaurant ko dikhane se pehle uska naam, approved photos,
+    asli menu aur confirmed prices lagayein.
+  </div>
+
+  <input id="search" type="search" placeholder="Search your favourite dish...">
+
+  <div class="categories" id="categories"></div>
+
+  <div class="heading">
+    <h2 id="sectionTitle">Our Menu</h2>
+    <span class="count" id="count"></span>
+  </div>
+
+  <section class="grid" id="menu"></section>
 
   <section class="contact">
-    <h2 style="margin-top:0">Visit Us</h2>
-    <p id="address">Add restaurant address here</p>
-    <a id="call" href="tel:+910000000000">Call Restaurant</a>
-    <a id="directions" href="https://maps.google.com/"
-       target="_blank" rel="noopener">Get Directions</a>
-    <p style="font-size:12px">Ask our team for today's specials.</p>
+    <h2>Visit Us</h2>
+    <p id="address">Restaurant address will appear here.</p>
+    <p id="hours">Opening hours will appear here.</p>
+    <div class="actions">
+      <a id="call" class="btn gold" hidden>Call Restaurant</a>
+      <a id="whatsapp" class="btn light" hidden target="_blank" rel="noopener">WhatsApp</a>
+      <a id="maps" class="btn light" hidden target="_blank" rel="noopener">Get Directions</a>
+    </div>
   </section>
+
+  <footer>
+    Digital Menu Demo · No online payment or ordering enabled
+  </footer>
 </main>
 
-<footer>Thank you for dining with us.</footer>
-
 <script>
-// EDIT THIS SECTION FOR EACH RESTAURANT
-const restaurant = {
-  name: "The Green Table",
-  address: "Your restaurant address",
-  phone: "910000000000",
-  map: "https://maps.google.com/"
+/*
+==================================================
+SETTINGS: APNI WEBSITE YAHAN SE MANAGE KARO
+==================================================
+*/
+
+// 1. RESTAURANT DETAILS
+const SETTINGS = {
+  name: "Royal Spice Kitchen",
+  tagline: "Indian favourites, made for sharing.",
+  address: "Add restaurant address here",
+  hours: "Daily: 11 AM - 10 PM",
+
+  // Number country code ke saath, sirf digits.
+  // Example format: 919876543210
+  phone: "",
+
+  // Google Maps ka actual link paste karo.
+  maps: "",
+
+  // 2. MENU ITEMS
+  // Photo: images/paneer.jpg jaise path ka use karo.
+  menu: [
+    {
+      category: "Starters",
+      name: "Paneer Tikka",
+      price: 199,
+      description: "Grilled paneer with Indian spices.",
+      photo: "images/paneer.jpg",
+      veg: true
+    },
+    {
+      category: "Starters",
+      name: "Veg Seekh Kebab",
+      price: 169,
+      description: "A flavourful vegetarian starter.",
+      photo: "images/kebab.jpg",
+      veg: true
+    },
+    {
+      category: "Main Course",
+      name: "Shahi Paneer",
+      price: 249,
+      description: "Paneer in a creamy tomato gravy.",
+      photo: "images/shahi-paneer.jpg",
+      veg: true
+    },
+    {
+      category: "Main Course",
+      name: "Dal Makhani",
+      price: 219,
+      description: "A rich, slow-cooked lentil dish.",
+      photo: "images/dal.jpg",
+      veg: true
+    },
+    {
+      category: "Rice & Biryani",
+      name: "Veg Biryani",
+      price: 199,
+      description: "Aromatic rice with vegetables.",
+      photo: "images/biryani.jpg",
+      veg: true
+    },
+    {
+      category: "Breads",
+      name: "Butter Naan",
+      price: 49,
+      description: "Soft naan with butter.",
+      photo: "images/naan.jpg",
+      veg: true
+    },
+    {
+      category: "Beverages",
+      name: "Sweet Lassi",
+      price: 79,
+      description: "A refreshing yoghurt drink.",
+      photo: "images/lassi.jpg",
+      veg: true
+    },
+    {
+      category: "Desserts",
+      name: "Gulab Jamun",
+      price: 89,
+      description: "A classic Indian dessert.",
+      photo: "images/gulab-jamun.jpg",
+      veg: true
+    }
+  ]
 };
 
-// Replace sample dishes, prices and photo links with real details.
-const dishes = [
-  {name:"Paneer Tikka",price:229,category:"Starters",
-   desc:"Smoky, marinated paneer",
-   img:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500"},
-  {name:"Veg Spring Rolls",price:149,category:"Starters",
-   desc:"Crispy vegetable rolls",
-   img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=500"},
-  {name:"Paneer Butter Masala",price:279,category:"Main Course",
-   desc:"Creamy tomato gravy",
-   img:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500"},
-  {name:"Veg Biryani",price:219,category:"Main Course",
-   desc:"Fragrant rice and spices",
-   img:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=500"},
-  {name:"Masala Dosa",price:129,category:"South Indian",
-   desc:"Crispy dosa with potato filling",
-   img:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"},
-  {name:"Cold Coffee",price:99,category:"Drinks",
-   desc:"Chilled coffee drink",
-   img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500"}
-];
+/*
+==================================================
+WEBSITE ENGINE: ISKE NEECHE EDIT KARNE KI ZAROORAT NAHI
+==================================================
+*/
 
-document.getElementById("restaurantName").textContent = restaurant.name;
-document.getElementById("address").textContent = restaurant.address;
-document.getElementById("call").href = "tel:+" + restaurant.phone;
-document.getElementById("directions").href = restaurant.map;
+let selectedCategory = "All";
 
-let selected = "All";
-
-function renderCategories(){
-  const cats = ["All", ...new Set(dishes.map(d => d.category))];
-  document.getElementById("categories").innerHTML = cats.map(c =>
-    `<button class="${c===selected?'active':''}"
-    onclick="chooseCategory('${c.replace(/'/g,"\\'")}')">${c}</button>`
-  ).join("");
+function el(id) {
+  return document.getElementById(id);
 }
 
-function chooseCategory(c){
-  selected = c;
-  renderCategories();
-  renderMenu();
+function safe(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
 }
 
-function renderMenu(){
-  const query = document.getElementById("search").value.toLowerCase();
-  const filtered = dishes.filter(d =>
-    (selected === "All" || d.category === selected) &&
-    (d.name.toLowerCase().includes(query) ||
-     d.category.toLowerCase().includes(query))
-  );
+function placeholder(name) {
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450">
+    <rect width="100%" height="100%" fill="#e7ddcd"/>
+    <text x="50%" y="46%" text-anchor="middle"
+    font-family="Arial" font-size="27" fill="#66533a">Food Photo</text>
+    <text x="50%" y="58%" text-anchor="middle"
+    font-family="Arial" font-size="21" fill="#66533a">${safe(name)}</text>
+    </svg>`;
 
-  document.getElementById("menu").innerHTML = filtered.length
-    ? filtered.map(d => `
-      <article class="item">
-        <img src="${d.img}" alt="${d.name}" loading="lazy">
-        <div class="details">
-          <div class="tag">● VEG</div>
-          <h3>${d.name}</h3>
-          <p>${d.desc}</p>
-          <div class="price">₹${d.price}</div>
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+function render() {
+  el("restaurantName").textContent = SETTINGS.name;
+  el("tagline").textContent = SETTINGS.tagline;
+  el("address").textContent = SETTINGS.address;
+  el("hours").textContent = "Opening hours: " + SETTINGS.hours;
+
+  const phone = String(SETTINGS.phone).replace(/\D/g, "");
+
+  el("call").hidden = !phone;
+  el("call").href = phone ? "tel:+" + phone : "#";
+
+  el("whatsapp").hidden = !phone;
+  el("whatsapp").href = phone
+    ? "https://wa.me/" + phone + "?text=" +
+      encodeURIComponent("Hello, I have a question about your menu.")
+    : "#";
+
+  el("maps").hidden = !SETTINGS.maps;
+  el("maps").href = SETTINGS.maps || "#";
+
+  const categories = [
+    "All",
+    ...new Set(SETTINGS.menu.map(item => item.category))
+  ];
+
+  if (!categories.includes(selectedCategory)) {
+    selectedCategory = "All";
+  }
+
+  el("categories").innerHTML = categories.map(category => `
+    <button class="cat ${category === selectedCategory ? "active" : ""}"
+      data-category="${safe(category)}" type="button">
+      ${safe(category)}
+    </button>
+  `).join("");
+
+  el("categories").querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+      selectedCategory = button.dataset.category;
+      render();
+    });
+  });
+
+  const query = el("search").value.trim().toLowerCase();
+
+  const items = SETTINGS.menu.filter(item => {
+    const matchesCategory =
+      selectedCategory === "All" ||
+      item.category === selectedCategory;
+
+    const matchesSearch =
+      (item.name + " " + item.category + " " + item.description)
+      .toLowerCase().includes(query);
+
+    return matchesCategory && matchesSearch;
+  });
+
+  el("count").textContent = items.length + " items";
+
+  el("menu").innerHTML = items.length ? items.map(item => {
+    const photo = item.photo
+      ? safe(item.photo)
+      : placeholder(item.name);
+
+    return `
+      <article class="food">
+        <img src="${photo}" alt="${safe(item.name)}"
+          loading="lazy"
+          onerror="this.onerror=null;this.src='${placeholder(item.name)}'">
+        <div class="food-info">
+          <div class="food-row">
+            <span class="food-name">${safe(item.name)}</span>
+            <span class="price">₹${safe(item.price)}</span>
+          </div>
+          <p class="description">${safe(item.description)}</p>
+          <div class="veg">${item.veg ? "● VEG" : "● NON-VEG"}</div>
         </div>
-      </article>`).join("")
-    : '<div class="empty">No dishes found. Try another search.</div>';
+      </article>
+    `;
+  }).join("") : '<div class="empty">No dishes found.</div>';
 }
 
-document.getElementById("search").addEventListener("input",renderMenu);
-renderCategories();
-renderMenu();
+el("search").addEventListener("input", render);
+render();
 </script>
+
 </body>
 </html>
