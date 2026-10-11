@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#18251e">
+<title>The Green Table | Digital Menu</title>
+<style>
+:root{--green:#20392b;--cream:#faf7f0;--gold:#c89d53}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:#252720;
+font-family:Arial,sans-serif}
+header{background:var(--green);color:white;padding:27px 18px 25px;
+text-align:center}
+.logo{font-size:12px;letter-spacing:4px;color:#e6c88f}
+header h1{font-family:Georgia,serif;font-size:34px;margin:13px 0 7px}
+header p{font-size:13px;color:#e0e5dc;margin:0}
+main{max-width:720px;margin:auto;padding:20px 15px 40px}
+.notice{font-size:12px;text-align:center;color:#8c5c22;
+background:#fff0d9;padding:10px;border-radius:8px}
+h2{font-family:Georgia,serif;font-size:25px;margin:23px 0 14px}
+.search{width:100%;padding:13px;border:1px solid #dedbd2;
+border-radius:10px;background:white;font-size:15px}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:14px 0}
+.categories button{white-space:nowrap;border:1px solid #ddd7ca;
+background:white;border-radius:22px;padding:10px 15px;color:#333}
+.categories button.active{background:var(--green);color:white}
+#menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.item{background:white;border-radius:13px;overflow:hidden;
+border:1px solid #ece8df}
+.item img{width:100%;height:135px;object-fit:cover;background:#eee}
+.details{padding:11px}
+.details h3{font-size:15px;margin:0 0 7px}
+.details p{font-size:12px;color:#777;margin:0 0 10px}
+.price{font-weight:bold;color:var(--green);font-size:16px}
+.tag{font-size:10px;color:#467b42;margin-bottom:7px}
+.empty{grid-column:1/-1;text-align:center;padding:30px}
+.contact{margin-top:28px;padding:22px;background:#eae7dc;
+border-radius:12px;text-align:center}
+.contact a{display:inline-block;margin:5px;padding:12px 15px;
+background:var(--green);color:white;text-decoration:none;
+border-radius:8px;font-size:13px}
+footer{text-align:center;font-size:11px;color:#777;padding:18px}
+@media(min-width:560px){#menu{grid-template-columns:repeat(3,minmax(0,1fr))}
+.item img{height:160px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">EST. • FRESH • FLAVOUR</div>
+  <h1 id="restaurantName">The Green Table</h1>
+  <p>Good food. Beautiful moments.</p>
+  <p style="margin-top:12px">DIGITAL MENU</p>
+</header>
+
+<main>
+  <div class="notice">DEMO MENU — Sample dishes and prices</div>
+  <h2>Explore Our Menu</h2>
+  <input id="search" class="search" placeholder="Search dishes..." />
+  <div id="categories" class="categories"></div>
+  <div id="menu"></div>
+
+  <section class="contact">
+    <h2 style="margin-top:0">Visit Us</h2>
+    <p id="address">Add restaurant address here</p>
+    <a id="call" href="tel:+910000000000">Call Restaurant</a>
+    <a id="directions" href="https://maps.google.com/"
+       target="_blank" rel="noopener">Get Directions</a>
+    <p style="font-size:12px">Ask our team for today's specials.</p>
+  </section>
+</main>
+
+<footer>Thank you for dining with us.</footer>
+
+<script>
+// EDIT THIS SECTION FOR EACH RESTAURANT
+const restaurant = {
+  name: "The Green Table",
+  address: "Your restaurant address",
+  phone: "910000000000",
+  map: "https://maps.google.com/"
+};
+
+// Replace sample dishes, prices and photo links with real details.
+const dishes = [
+  {name:"Paneer Tikka",price:229,category:"Starters",
+   desc:"Smoky, marinated paneer",
+   img:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500"},
+  {name:"Veg Spring Rolls",price:149,category:"Starters",
+   desc:"Crispy vegetable rolls",
+   img:"https://images.unsplash.com/photo-1544025162-d76694265947?w=500"},
+  {name:"Paneer Butter Masala",price:279,category:"Main Course",
+   desc:"Creamy tomato gravy",
+   img:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500"},
+  {name:"Veg Biryani",price:219,category:"Main Course",
+   desc:"Fragrant rice and spices",
+   img:"https://images.unsplash.com/photo-1563379091339-03246963d96c?w=500"},
+  {name:"Masala Dosa",price:129,category:"South Indian",
+   desc:"Crispy dosa with potato filling",
+   img:"https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500"},
+  {name:"Cold Coffee",price:99,category:"Drinks",
+   desc:"Chilled coffee drink",
+   img:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500"}
+];
+
+document.getElementById("restaurantName").textContent = restaurant.name;
+document.getElementById("address").textContent = restaurant.address;
+document.getElementById("call").href = "tel:+" + restaurant.phone;
+document.getElementById("directions").href = restaurant.map;
+
+let selected = "All";
+
+function renderCategories(){
+  const cats = ["All", ...new Set(dishes.map(d => d.category))];
+  document.getElementById("categories").innerHTML = cats.map(c =>
+    `<button class="${c===selected?'active':''}"
+    onclick="chooseCategory('${c.replace(/'/g,"\\'")}')">${c}</button>`
+  ).join("");
+}
+
+function chooseCategory(c){
+  selected = c;
+  renderCategories();
+  renderMenu();
+}
+
+function renderMenu(){
+  const query = document.getElementById("search").value.toLowerCase();
+  const filtered = dishes.filter(d =>
+    (selected === "All" || d.category === selected) &&
+    (d.name.toLowerCase().includes(query) ||
+     d.category.toLowerCase().includes(query))
+  );
+
+  document.getElementById("menu").innerHTML = filtered.length
+    ? filtered.map(d => `
+      <article class="item">
+        <img src="${d.img}" alt="${d.name}" loading="lazy">
+        <div class="details">
+          <div class="tag">● VEG</div>
+          <h3>${d.name}</h3>
+          <p>${d.desc}</p>
+          <div class="price">₹${d.price}</div>
+        </div>
+      </article>`).join("")
+    : '<div class="empty">No dishes found. Try another search.</div>';
+}
+
+document.getElementById("search").addEventListener("input",renderMenu);
+renderCategories();
+renderMenu();
+</script>
+</body>
+</html>
