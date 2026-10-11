@@ -3,427 +3,403 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#191713">
-<title>Royal Spice Kitchen | Digital Menu</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171714">
+<title>Royal Kitchen | Digital Menu</title>
 <style>
 :root {
-  --bg:#f7f2e9;
-  --card:#fffdf8;
-  --dark:#211e19;
-  --gold:#c49a58;
-  --muted:#766e63;
-  --line:#e6ddcf;
+  --dark: #171714;
+  --cream: #f8f4eb;
+  --gold: #c5a15a;
+  --muted: #77736a;
 }
-* { box-sizing:border-box; }
+* { box-sizing: border-box; }
 body {
-  margin:0;
-  background:var(--bg);
-  color:var(--dark);
-  font-family:Arial,sans-serif;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--dark);
 }
-button,input { font:inherit; }
 header {
-  background:linear-gradient(135deg,#191713,#44372a);
-  color:white;
-  padding:30px 18px;
+  background: var(--dark);
+  color: white;
+  padding: 24px 18px 28px;
+  text-align: center;
 }
-.wrap { max-width:850px; margin:auto; }
-.eyebrow {
-  color:#e3c18c;
-  font-size:11px;
-  letter-spacing:3px;
-  text-transform:uppercase;
+.brand {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 h1 {
-  font-family:Georgia,serif;
-  font-size:clamp(32px,8vw,48px);
-  font-weight:normal;
-  margin:13px 0;
+  margin: 12px 0 8px;
+  font-family: Georgia, serif;
+  font-size: clamp(32px, 8vw, 48px);
+  font-weight: normal;
 }
-header p { color:#e8dfd3; line-height:1.5; }
-.demo {
-  display:inline-block;
-  padding:7px 11px;
-  border:1px solid #94774e;
-  border-radius:30px;
-  font-size:10px;
-  letter-spacing:1px;
-  margin-top:7px;
+.tagline { color: #d6d0c4; font-size: 13px; }
+.hero {
+  position: relative;
+  min-height: 250px;
+  background: #29261f;
+  overflow: hidden;
 }
-main { max-width:850px; margin:auto; padding:18px 13px 35px; }
-.notice {
-  background:#fff0d2;
-  padding:12px;
-  border-radius:10px;
-  font-size:12px;
-  line-height:1.5;
-  margin-bottom:18px;
+.hero img {
+  display: block;
+  width: 100%;
+  height: 290px;
+  object-fit: cover;
+  opacity: .82;
 }
-input {
-  width:100%;
-  padding:13px;
-  border:1px solid var(--line);
-  background:white;
-  border-radius:10px;
-  outline-color:var(--gold);
+.hero-label {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  text-shadow: 0 2px 8px #000;
 }
-.categories {
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:12px 0;
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 24px 15px 40px;
 }
-.cat {
-  flex-shrink:0;
-  border:1px solid var(--line);
-  border-radius:25px;
-  padding:9px 14px;
-  background:var(--card);
-  cursor:pointer;
+.section-heading {
+  font-family: Georgia, serif;
+  font-size: 28px;
+  margin: 8px 0 16px;
 }
-.cat.active { background:var(--dark); color:white; }
-.heading {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-  margin:18px 0 13px;
+.search {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd4c4;
+  border-radius: 10px;
+  background: white;
+  font-size: 15px;
+  outline-color: var(--gold);
 }
-h2 { font-family:Georgia,serif; font-weight:normal; margin:0; }
-.count { font-size:12px; color:var(--muted); }
-.grid {
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
+.filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 14px 0 18px;
 }
-.food {
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:14px;
-  overflow:hidden;
+.filter {
+  flex-shrink: 0;
+  padding: 10px 15px;
+  border: 1px solid #d9d0c0;
+  border-radius: 24px;
+  background: transparent;
+  color: var(--dark);
+  cursor: pointer;
 }
-.food img {
-  display:block;
-  width:100%;
-  aspect-ratio:1.15;
-  object-fit:cover;
-  background:#e7ddcd;
+.filter.active {
+  background: var(--dark);
+  color: white;
+  border-color: var(--dark);
 }
-.food-info { padding:11px; }
-.food-row {
-  display:flex;
-  justify-content:space-between;
-  gap:7px;
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
 }
-.food-name { font-size:14px; font-weight:bold; }
-.price { color:#8a622b; font-weight:bold; white-space:nowrap; }
+.card {
+  min-width: 0;
+  overflow: hidden;
+  background: white;
+  border-radius: 13px;
+  border: 1px solid #eee7da;
+}
+.food-image {
+  width: 100%;
+  height: 145px;
+  display: block;
+  object-fit: cover;
+  background: #e9e1d3;
+}
+.card-body { padding: 12px; }
+.food-name {
+  font-family: Georgia, serif;
+  font-size: 17px;
+  margin: 0 0 7px;
+  overflow-wrap: anywhere;
+}
 .description {
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.45;
-  margin:8px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+  min-height: 34px;
 }
-.veg { color:#247747; font-size:10px; font-weight:bold; }
-.empty {
-  grid-column:1/-1;
-  text-align:center;
-  padding:25px;
-  color:var(--muted);
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 12px;
 }
-.contact {
-  margin-top:23px;
-  padding:20px;
-  border-radius:14px;
-  background:var(--dark);
-  color:white;
+.price { font-weight: bold; font-size: 17px; }
+.veg {
+  color: #267744;
+  font-size: 11px;
+  border: 1px solid #267744;
+  padding: 4px 6px;
+  border-radius: 5px;
 }
-.contact p { color:#ded5c9; font-size:13px; line-height:1.6; }
-.actions { display:flex; flex-wrap:wrap; gap:9px; }
-.btn {
-  display:inline-block;
-  border:0;
-  border-radius:9px;
-  padding:12px 14px;
-  font-weight:bold;
-  text-decoration:none;
-  font-size:13px;
-  cursor:pointer;
+.info {
+  margin-top: 28px;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  line-height: 1.9;
+  font-size: 14px;
 }
-.gold { background:var(--gold); color:#211e19; }
-.light { background:#fffdf8; color:#211e19; }
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+.action {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 13px 8px;
+  background: var(--dark);
+  color: white;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.action.gold { background: var(--gold); color: #171714; }
 footer {
-  padding:22px 5px;
-  text-align:center;
-  color:var(--muted);
-  font-size:11px;
+  text-align: center;
+  padding: 22px 15px;
+  background: var(--dark);
+  color: #d6d0c4;
+  font-size: 12px;
+  line-height: 1.8;
 }
-@media(min-width:600px) {
-  .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  main { padding:24px 18px; }
+footer strong { color: var(--gold); }
+.empty {
+  display: none;
+  padding: 25px 5px;
+  text-align: center;
+  color: var(--muted);
 }
-@media(max-width:340px) {
-  .grid { grid-template-columns:1fr; }
+@media (max-width: 360px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  .food-image { height: 190px; }
 }
 </style>
 </head>
-
 <body>
 
 <header>
-  <div class="wrap">
-    <div class="eyebrow">A taste worth remembering</div>
-    <h1 id="restaurantName">Royal Spice Kitchen</h1>
-    <p id="tagline">Indian favourites, made for sharing.</p>
-    <span class="demo">DEMO MENU · SAMPLE DETAILS</span>
-  </div>
+  <div class="brand">Authentic Taste • Fine Dining</div>
+  <h1 id="restaurantName">Royal Kitchen</h1>
+  <div class="tagline" id="tagline">Good Food. Beautiful Moments.</div>
 </header>
 
+<section class="hero">
+  <img src="images/ss.jpg"
+       alt="Restaurant special dish"
+       onerror="this.style.display='none'">
+  <div class="hero-label">Made with love.</div>
+</section>
+
 <main>
-  <div class="notice">
-    <b>Demo website:</b> Ye sample restaurant hai.
-    Asli restaurant ko dikhane se pehle uska naam, approved photos,
-    asli menu aur confirmed prices lagayein.
-  </div>
+  <h2 class="section-heading">Our Menu</h2>
+  <input class="search" id="search"
+         type="search"
+         placeholder="Search dishes..."
+         aria-label="Search menu">
 
-  <input id="search" type="search" placeholder="Search your favourite dish...">
+  <div class="filters" id="filters"></div>
+  <div class="menu-grid" id="menu"></div>
+  <div class="empty" id="empty">No dishes found. Try another search.</div>
 
-  <div class="categories" id="categories"></div>
-
-  <div class="heading">
-    <h2 id="sectionTitle">Our Menu</h2>
-    <span class="count" id="count"></span>
-  </div>
-
-  <section class="grid" id="menu"></section>
-
-  <section class="contact">
-    <h2>Visit Us</h2>
-    <p id="address">Restaurant address will appear here.</p>
-    <p id="hours">Opening hours will appear here.</p>
+  <section class="info">
+    <strong id="infoName">Royal Kitchen</strong><br>
+    <span id="address">Your restaurant address here</span><br>
+    <span id="hours">Open daily: 11 AM – 11 PM</span>
     <div class="actions">
-      <a id="call" class="btn gold" hidden>Call Restaurant</a>
-      <a id="whatsapp" class="btn light" hidden target="_blank" rel="noopener">WhatsApp</a>
-      <a id="maps" class="btn light" hidden target="_blank" rel="noopener">Get Directions</a>
+      <a class="action" id="callBtn" href="tel:+910000000000">Call Restaurant</a>
+      <a class="action gold" id="mapBtn" href="https://maps.google.com/" target="_blank" rel="noopener">Get Directions</a>
+      <a class="action" id="whatsappBtn" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="action gold" href="#menu">View Menu</a>
     </div>
   </section>
-
-  <footer>
-    Digital Menu Demo · No online payment or ordering enabled
-  </footer>
 </main>
 
+<footer>
+  <strong id="footerName">Royal Kitchen</strong><br>
+  Digital Menu • Thank you for visiting
+</footer>
+
 <script>
-/*
-==================================================
-SETTINGS: APNI WEBSITE YAHAN SE MANAGE KARO
-==================================================
-*/
-
-// 1. RESTAURANT DETAILS
+// ====== RESTAURANT DETAILS: EDIT HERE ======
 const SETTINGS = {
-  name: "Royal Spice Kitchen",
-  tagline: "Indian favourites, made for sharing.",
-  address: "Add restaurant address here",
-  hours: "Daily: 11 AM - 10 PM",
-
-  // Number country code ke saath, sirf digits.
-  // Example format: 919876543210
-  phone: "",
-
-  // Google Maps ka actual link paste karo.
-  maps: "",
-
-  // 2. MENU ITEMS
-  // Photo: images/paneer.jpg jaise path ka use karo.
-  menu: [
-    {
-      category: "Starters",
-      name: "Paneer Tikka",
-      price: 199,
-      description: "Grilled paneer with Indian spices.",
-      photo: "images/paneer.jpg",
-      veg: true
-    },
-    {
-      category: "Starters",
-      name: "Veg Seekh Kebab",
-      price: 169,
-      description: "A flavourful vegetarian starter.",
-      photo: "images/kebab.jpg",
-      veg: true
-    },
-    {
-      category: "Main Course",
-      name: "Shahi Paneer",
-      price: 249,
-      description: "Paneer in a creamy tomato gravy.",
-      photo: "images/shahi-paneer.jpg",
-      veg: true
-    },
-    {
-      category: "Main Course",
-      name: "Dal Makhani",
-      price: 219,
-      description: "A rich, slow-cooked lentil dish.",
-      photo: "images/dal.jpg",
-      veg: true
-    },
-    {
-      category: "Rice & Biryani",
-      name: "Veg Biryani",
-      price: 199,
-      description: "Aromatic rice with vegetables.",
-      photo: "images/biryani.jpg",
-      veg: true
-    },
-    {
-      category: "Breads",
-      name: "Butter Naan",
-      price: 49,
-      description: "Soft naan with butter.",
-      photo: "images/naan.jpg",
-      veg: true
-    },
-    {
-      category: "Beverages",
-      name: "Sweet Lassi",
-      price: 79,
-      description: "A refreshing yoghurt drink.",
-      photo: "images/lassi.jpg",
-      veg: true
-    },
-    {
-      category: "Desserts",
-      name: "Gulab Jamun",
-      price: 89,
-      description: "A classic Indian dessert.",
-      photo: "images/gulab-jamun.jpg",
-      veg: true
-    }
-  ]
+  name: "Royal Kitchen",
+  tagline: "Good Food. Beautiful Moments.",
+  address: "Your restaurant address here",
+  hours: "Open daily: 11 AM – 11 PM",
+  phone: "+910000000000",
+  whatsapp: "910000000000",
+  maps: "https://maps.google.com/"
 };
 
-/*
-==================================================
-WEBSITE ENGINE: ISKE NEECHE EDIT KARNE KI ZAROORAT NAHI
-==================================================
-*/
-
-let selectedCategory = "All";
-
-function el(id) {
-  return document.getElementById(id);
-}
-
-function safe(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#39;"
-  })[char]);
-}
-
-function placeholder(name) {
-  const svg =
-    `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="450">
-    <rect width="100%" height="100%" fill="#e7ddcd"/>
-    <text x="50%" y="46%" text-anchor="middle"
-    font-family="Arial" font-size="27" fill="#66533a">Food Photo</text>
-    <text x="50%" y="58%" text-anchor="middle"
-    font-family="Arial" font-size="21" fill="#66533a">${safe(name)}</text>
-    </svg>`;
-
-  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-}
-
-function render() {
-  el("restaurantName").textContent = SETTINGS.name;
-  el("tagline").textContent = SETTINGS.tagline;
-  el("address").textContent = SETTINGS.address;
-  el("hours").textContent = "Opening hours: " + SETTINGS.hours;
-
-  const phone = String(SETTINGS.phone).replace(/\D/g, "");
-
-  el("call").hidden = !phone;
-  el("call").href = phone ? "tel:+" + phone : "#";
-
-  el("whatsapp").hidden = !phone;
-  el("whatsapp").href = phone
-    ? "https://wa.me/" + phone + "?text=" +
-      encodeURIComponent("Hello, I have a question about your menu.")
-    : "#";
-
-  el("maps").hidden = !SETTINGS.maps;
-  el("maps").href = SETTINGS.maps || "#";
-
-  const categories = [
-    "All",
-    ...new Set(SETTINGS.menu.map(item => item.category))
-  ];
-
-  if (!categories.includes(selectedCategory)) {
-    selectedCategory = "All";
+// ====== MENU ITEMS: EDIT DISH NAME, PRICE AND IMAGE ======
+const dishes = [
+  {
+    name: "Special Paneer",
+    category: "Starters",
+    price: 220,
+    description: "Freshly prepared restaurant special",
+    image: "images/ss.jpg"
+  },
+  {
+    name: "Paneer Masala",
+    category: "Main Course",
+    price: 240,
+    description: "Rich and flavourful Indian curry",
+    image: "images/ss.jpg"
+  },
+  {
+    name: "Veg Biryani",
+    category: "Rice",
+    price: 180,
+    description: "Aromatic rice with Indian spices",
+    image: "images/ss.jpg"
+  },
+  {
+    name: "Dal Tadka",
+    category: "Main Course",
+    price: 160,
+    description: "Classic Indian comfort food",
+    image: "images/ss.jpg"
+  },
+  {
+    name: "Butter Naan",
+    category: "Breads",
+    price: 40,
+    description: "Freshly prepared Indian bread",
+    image: "images/ss.jpg"
+  },
+  {
+    name: "Cold Coffee",
+    category: "Drinks",
+    price: 120,
+    description: "Chilled and refreshing",
+    image: "images/ss.jpg"
   }
+];
 
-  el("categories").innerHTML = categories.map(category => `
-    <button class="cat ${category === selectedCategory ? "active" : ""}"
-      data-category="${safe(category)}" type="button">
-      ${safe(category)}
-    </button>
-  `).join("");
+// ====== WEBSITE LOGIC: NO NEED TO EDIT BELOW ======
+document.title = SETTINGS.name + " | Digital Menu";
+document.getElementById("restaurantName").textContent = SETTINGS.name;
+document.getElementById("tagline").textContent = SETTINGS.tagline;
+document.getElementById("infoName").textContent = SETTINGS.name;
+document.getElementById("footerName").textContent = SETTINGS.name;
+document.getElementById("address").textContent = SETTINGS.address;
+document.getElementById("hours").textContent = SETTINGS.hours;
 
-  el("categories").querySelectorAll("button").forEach(button => {
-    button.addEventListener("click", () => {
-      selectedCategory = button.dataset.category;
-      render();
-    });
+document.getElementById("callBtn").href =
+  "tel:" + SETTINGS.phone.replace(/[^\d+]/g, "");
+
+document.getElementById("whatsappBtn").href =
+  "https://wa.me/" + SETTINGS.whatsapp.replace(/\D/g, "");
+
+document.getElementById("mapBtn").href = SETTINGS.maps;
+
+const menu = document.getElementById("menu");
+const filters = document.getElementById("filters");
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+let activeCategory = "All";
+
+function makeFilters() {
+  const categories = ["All", ...new Set(dishes.map(d => d.category))];
+  filters.innerHTML = "";
+
+  categories.forEach(category => {
+    const button = document.createElement("button");
+    button.className = "filter" +
+      (category === activeCategory ? " active" : "");
+    button.textContent = category;
+
+    button.onclick = () => {
+      activeCategory = category;
+      makeFilters();
+      renderMenu();
+    };
+
+    filters.appendChild(button);
   });
+}
 
-  const query = el("search").value.trim().toLowerCase();
+function renderMenu() {
+  const term = search.value.toLowerCase().trim();
 
-  const items = SETTINGS.menu.filter(item => {
+  const results = dishes.filter(d => {
     const matchesCategory =
-      selectedCategory === "All" ||
-      item.category === selectedCategory;
-
+      activeCategory === "All" || d.category === activeCategory;
     const matchesSearch =
-      (item.name + " " + item.category + " " + item.description)
-      .toLowerCase().includes(query);
+      (d.name + " " + d.category + " " + d.description)
+      .toLowerCase().includes(term);
 
     return matchesCategory && matchesSearch;
   });
 
-  el("count").textContent = items.length + " items";
+  menu.innerHTML = "";
 
-  el("menu").innerHTML = items.length ? items.map(item => {
-    const photo = item.photo
-      ? safe(item.photo)
-      : placeholder(item.name);
+  results.forEach(dish => {
+    const card = document.createElement("article");
+    card.className = "card";
 
-    return `
-      <article class="food">
-        <img src="${photo}" alt="${safe(item.name)}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='${placeholder(item.name)}'">
-        <div class="food-info">
-          <div class="food-row">
-            <span class="food-name">${safe(item.name)}</span>
-            <span class="price">₹${safe(item.price)}</span>
-          </div>
-          <p class="description">${safe(item.description)}</p>
-          <div class="veg">${item.veg ? "● VEG" : "● NON-VEG"}</div>
-        </div>
-      </article>
-    `;
-  }).join("") : '<div class="empty">No dishes found.</div>';
+    const img = document.createElement("img");
+    img.className = "food-image";
+    img.src = dish.image;
+    img.alt = dish.name;
+    img.loading = "lazy";
+    img.onerror = function() {
+      this.style.visibility = "hidden";
+    };
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    const name = document.createElement("h3");
+    name.className = "food-name";
+    name.textContent = dish.name;
+
+    const desc = document.createElement("div");
+    desc.className = "description";
+    desc.textContent = dish.description;
+
+    const priceRow = document.createElement("div");
+    priceRow.className = "price-row";
+
+    const price = document.createElement("span");
+    price.className = "price";
+    price.textContent = "₹" + dish.price;
+
+    const veg = document.createElement("span");
+    veg.className = "veg";
+    veg.textContent = "VEG";
+
+    priceRow.append(price, veg);
+    body.append(name, desc, priceRow);
+    card.append(img, body);
+    menu.appendChild(card);
+  });
+
+  empty.style.display = results.length ? "none" : "block";
 }
 
-el("search").addEventListener("input", render);
-render();
+search.addEventListener("input", renderMenu);
+makeFilters();
+renderMenu();
 </script>
 
 </body>
